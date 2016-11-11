@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="search-container">
+    <form action="" method="post" name="login" class="pure-form" id="search-form">
+        <fieldset>
+            <div class="search-input" id="search-input">
+                {{ form.hidden_tag() }}
+                {{ form.term(size=30, maxlength=140, id="searchInput", placeholder=category.topic, autofocus="") }}
+                <!-- <input id="searchInput" name="search" type="search" size="20" autofocus accesskey="F" dir="auto" results="10" autocomplete="off" style="padding-right: 64px;"> -->
+            </div>
+
+            <button class="pure-button pure-button-primary-progressive" type="submit">
+                <i class="sprite-bookshelf_icons sprite-bookshelf_icons-search-icon"></i>
+            </button>
+        </fieldset>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+
+            {% for message in messages %}
+            {% for m in message %}
+            <p> <b>{{ m[0] }}</b>: {{ m[1] }}<br/><br/></p>
+            {% endfor %}
+            {% endfor %}
+
+        {% endif %}
+        {% endwith %}
+    </form>
+</div>
+{% endblock %}

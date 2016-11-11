@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="js-enabled">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="robots" content="NOODP">
+    <meta name="description" content="Search Vocab for AP Classes">
+    <meta name="keywords" content="AP, Vocab, Vocabulary, Search, Quizlet">
+    <meta name="imagelink" content="/static/imgs/doggo-logo.gif">
+
+    <title>AP Vocab Search</title>
+
+    <!--[if gt IE 7]-->
+    <script>
+        document.documentElement.className = document.documentElement.className.replace( /(^|\s)no-js(\s|$)/, "$1js-enabled$2" );
+
+    </script>
+    <!--[endif]-->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-87252812-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+</head>
+<body id="apvocab-com">
+<h1 class="central-textlogo" style="font-variant: small-caps" alt="VocabpediA" title="Vocabpedia">
+    <a href="/">
+        <img src="/static/imgs/vocabpedia_wordmark.png" width="174" height="25"
+             alt="VocabpediA"
+             title="VocabpediA">
+    </a>
+    <strong id="js-localized-slogan" class="localized-slogan" style="visibility: visible;">The Slacker's
+        Paradise</strong>
+</h1>
+<!-- container div for the central logo and the links to the most viewed language editions -->
+<div class="central-featured" data-el-section="primary links" style="visibility: visible;">
+    <!-- logo -->
+    <div class="central-featured-logo-wrapper">
+        <img class="central-featured-logo" src="/static/imgs/doggo-logo.gif" width="200" alt="Doggo Logo">
+    </div>
+
+    <div class="central-featured-lang lang1">
+        <a href="gov" title="AP Government vocab search" class="link-box">
+            <strong>AP Government</strong>
+            <small>mr. dolan turnip</small>
+        </a>
+    </div>
+
+    <div class="central-featured-lang lang2">
+        <a href="enviro" title="AP Environmental Sciences vocab search" class="link-box">
+            <strong>AP Enviro</strong>
+            <small>rip earth</small>
+        </a>
+    </div>
+
+    <div class="central-featured-lang lang3">
+        <a href="psych" title="AP Psychology vocab search" class="link-box">
+            <strong>AP Psych</strong>
+            <small>also a good tv show</small>
+        </a>
+    </div>
+
+    <div class="central-featured-lang lang4">
+        <a href="bio" title="AP Biology vocab search" class="link-box">
+            <strong>AP Biology</strong>
+            <small>biolology</small>
+        </a>
+    </div>
+
+    <div class="central-featured-lang lang5">
+        <a href="econ" title="AP Economics vocab search" class="link-box">
+            <strong>AP Micro/Macro</strong>
+            <small>grades lower than the peso</small>
+        </a>
+    </div>
+
+    <div class="central-featured-lang lang6">
+        <a href="world" title="AP World History vocab search" class="link-box">
+            <strong>AP World</strong>
+            <small>i can show u the world</small>
+        </a>
+    </div>
+
+    <div class="central-featured-lang lang7">
+        <a href="ushistory" title="AP U.S. History vocab search" class="link-box">
+            <strong>AP U.S. History</strong>
+            <small>apush 2 far</small>
+        </a>
+    </div>
+
+    <div class="central-featured-lang lang8">
+        <a href="lang" title="AP English Language and Composition vocab search"
+           class="link-box">
+            <strong>AP Lang</strong>
+            <small>lang gang</small>
+        </a>
+    </div>
+
+    <div class="central-featured-lang lang9">
+        <a href="euro" title="AP European history vocab search" class="link-box">
+            <strong>AP Euro History</strong>
+            <small>ur a'peein</small>
+        </a>
+    </div>
+
+    <div class="central-featured-lang lang10">
+        <a href="lit" title="AP English Literature and Composition vocab search"
+           class="link-box">
+            <strong>AP Lit</strong>
+            <small>dis shit lit</small>
+        </a>
+    </div>
+</div>
+
+<!-- Search form -->
+{% block content %}{% endblock %}
+
+<div class="lang-list-border"></div>
+<p class="site-license">
+    <small><br><a href="/about">About this site</a> - <a href="/tips">Search tips</a></small>
+</p>
+
+</body>
+</html>
