@@ -17,17 +17,17 @@ lit = TopicSearch('lit', 'AP English Literature')
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template("index.html")
+    return render_template("index.html", current={})
 
 
 @app.route('/about')
 def about():
-    return render_template("about.html")
+    return render_template("about.html", current={})
 
 
 @app.route('/tips')
 def tips():
-    return render_template("tips.html")
+    return render_template("tips.html", current={})
 
 
 @app.route('/gov', methods=['GET', 'POST'])

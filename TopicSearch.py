@@ -9,11 +9,11 @@ class TopicSearch:
         def_path = os.path.join(os.path.dirname(__file__) + '/static/defs/', def_name) + '_defs.pickle'
         self.vocab = vocab_searcher.VocabSearch(def_path)
         self.topic = topic
+        self.def_name = def_name
 
     def search(self):
         form = SearchForm()
-        string = "Search " + self.topic
-        category = {'topic': string}
+        search_topic = "Search " + self.topic
         if form.validate_on_submit():
             term = form.term.data
             print term
@@ -21,4 +21,5 @@ class TopicSearch:
         return render_template('search.html',
                                title='Search a term',
                                form=form,
-                               category=category)
+                               search_topic=search_topic,
+                               current={self.def_name: True})
