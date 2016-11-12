@@ -35,7 +35,7 @@ def fill_vocab(search_terms, max_terms):
         num_pages = search_sets(term)['total_pages'] - 1
         for page in range(1, num_pages):
             if page % 2 == 0:
-                print str(math.floor(len(definitions) * 100 / float(max_terms))) + '% Complete'
+                print str(int(math.floor(len(definitions) * 100 / float(max_terms)))) + '% Complete'
             page_sets = search_page(term, page)
             for quiz_set in page_sets['sets']:
                 try:
@@ -49,11 +49,11 @@ def fill_vocab(search_terms, max_terms):
 if __name__ == "__main__":
     main()
     max_num_terms = 25000
-    terms = ['AP Gov']
+    terms = ['AP Human Geography']
     vocab = fill_vocab(terms, max_num_terms)
     print len(vocab)
 
-    with open('../static/defs/gov_defs.pickle', 'wb') as handle:
+    with open('../static/defs/humangeo_defs.pickle', 'wb') as handle:
         pickle.dump(vocab, handle)
 
 

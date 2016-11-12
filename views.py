@@ -11,7 +11,7 @@ world = TopicSearch('world', 'AP World History')
 ushistory = TopicSearch('ushistory', 'AP US History')
 lang = TopicSearch('lang', 'AP English Language')
 euro = TopicSearch('euro', 'AP European History')
-lit = TopicSearch('lit', 'AP English Literature')
+humangeo = TopicSearch('humangeo', 'AP Human Geography')
 
 
 @app.route('/')
@@ -75,6 +75,6 @@ def euro_page():
     return euro.search()
 
 
-@app.route('/lit', methods=['GET', 'POST'])
-def lit_page():
-    return lit.search()
+@app.route('/humangeo', methods=['GET', 'POST'])
+def humangeo_page():
+    return humangeo.search()
