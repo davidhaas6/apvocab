@@ -3,6 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="robots" content="NOODP">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Search Vocab for AP Classes">
     <meta name="keywords" content="AP, Vocab, Vocabulary, Search, Quizlet">
     <meta name="imagelink" content="/static/imgs/doggo-logo.gif">
@@ -14,17 +15,15 @@
         document.documentElement.className = document.documentElement.className.replace( /(^|\s)no-js(\s|$)/, "$1js-enabled$2" );
     </script>
     <!--[endif]-->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-87252812-1', 'auto');
-  ga('send', 'pageview');
-</script>
-
+      ga('create', 'UA-87252812-1', 'auto');
+      ga('send', 'pageview');
+    </script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 </head>
@@ -36,8 +35,7 @@
              alt="VocabpediA"
              title="VocabpediA">
     </a>
-    <strong id="js-localized-slogan" class="localized-slogan" style="visibility: visible;">The Slacker's
-        Paradise</strong>
+    <strong id="js-localized-slogan" class="localized-slogan" style="visibility: visible;">The Slacker's Paradise</strong>
 </h1>
 <!-- container div for the central logo and the links to the most viewed language editions -->
 <div class="central-featured" data-el-section="primary links" style="visibility: visible;">
