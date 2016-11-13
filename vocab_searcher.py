@@ -9,7 +9,7 @@ class VocabSearch:
 
     def search(self, word):
         answers = []
-        num_results = 25
+        num_results = 35
         if ':' in word:
             num_results = int(re.search('(\d+)$', word).group(0))
             word = word[:word.find(':')]
