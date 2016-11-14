@@ -1,8 +1,8 @@
-import os
 from flask import render_template, flash
+from forms import SearchForm
 import vocab_searcher
 import views
-from forms import SearchForm
+import os
 
 
 class TopicSearch:
