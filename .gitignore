@@ -3,3 +3,11 @@
 \!
 *.zip
 test.py
+TopicSearch.pyc
+config.pyc
+database aggregator/quizlet_aggregator.pyc
+forms.pyc
+init.pyc
+views.pyc
+vocab_searcher.pyc
+static/imgs/logo.psd
