@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Search Vocab for AP Classes">
     <meta name="keywords" content="AP, Vocab, Vocabulary, Search, Quizlet">
-    <meta name="imagelink" content="/static/imgs/doggo-logo.gif">
+    <meta name="imagelink" content="/static/imgs/logo.gif">
 
     <title>AP Vocab Search</title>
 
@@ -41,13 +41,16 @@
 <div class="central-featured" data-el-section="primary links" style="visibility: visible;">
     <!-- logo -->
     <div class="central-featured-logo-wrapper">
-        <img class="central-featured-logo" src="/static/imgs/doggo-logo.gif" width="195" alt="Doggo Logo">
+        <img class="central-featured-logo" src="/static/imgs/logo.gif" width="230" alt="Doggo Logo">
     </div>
 
     % for topic in topics
         <div class="central-featured-subject subject{{  loop.index  }}">
             <a href="{{topic.def_name}}" title="{{ topic.subject }} vocab search" class="link-box">
-                <strong>{%- if current[topic.def_name] %}<u>{%- endif %}{{ topic.shorthand }}{%- if current[topic.def_name] %}</u>{%- endif %}</strong>
+                <strong class="expand">
+                    {%- if current[topic.def_name] %}<u>{%- endif %}
+                    {{ topic.shorthand }}
+                    {%- if current[topic.def_name] %}</u>{%- endif %}</strong>
                 <small>{{ topic.description }}</small>
             </a>
         </div>
