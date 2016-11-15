@@ -24,7 +24,7 @@ def search_page(search_term, page):
 def add_terms(terms):
     defs = {}
     for i in range(len(terms)):
-        if len(terms[i]['term'].strip()) < len(terms[i]['definition'].strip()) * 1.5:
+        if len(terms[i]['definition'].strip()) > 1:
             defs[terms[i]['term']] = terms[i]['definition']
     return defs
 
