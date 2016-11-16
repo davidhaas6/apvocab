@@ -11,3 +11,4 @@ init.pyc
 views.pyc
 vocab_searcher.pyc
 static/imgs/logo.psd
+*__pycache__/
