@@ -7,13 +7,15 @@
     <meta name="description" content="Search Vocab for AP Classes">
     <meta name="keywords" content="AP, Vocab, Vocabulary, Search, Quizlet">
     <meta name="imagelink" content="/static/imgs/logo-square.gif">
-    <meta property="og:image" content="http://search.apvocab.com/static/imgs/logo-square.gif" />
+    <meta property="og:image" content="http://search.apvocab.com/static/imgs/logo-square.gif"/>
 
     <title>AP Vocab Search</title>
 
     <!--[if gt IE 7]-->
     <script>
         document.documentElement.className = document.documentElement.className.replace( /(^|\s)no-js(\s|$)/, "$1js-enabled$2" );
+
+
     </script>
     <!--[endif]-->
     <script>
@@ -25,6 +27,7 @@
       ga('create', 'UA-87252812-1', 'auto');
       ga('send', 'pageview');
     </script>
+
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style-v1.01.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 </head>
@@ -36,7 +39,8 @@
              alt="VocabpediA"
              title="VocabpediA">
     </a>
-    <strong id="js-localized-slogan" class="localized-slogan" style="visibility: visible;">The Slacker's Paradise</strong>
+    <strong id="js-localized-slogan" class="localized-slogan" style="visibility: visible;">The Slacker's
+        Paradise</strong>
 </h1>
 <!-- container div for the central logo and the links to the most viewed language editions -->
 <div class="central-featured" data-el-section="primary links" style="visibility: visible;">
@@ -46,15 +50,15 @@
     </div>
 
     % for topic in topics
-        <div class="central-featured-subject subject{{  loop.index  }}">
-            <a href="{{topic.def_name}}" title="{{ topic.subject }} vocab search" class="link-box">
-                <strong class="expand">
-                    {%- if current[topic.def_name] %}<u>{%- endif %}
-                    {{ topic.shorthand }}
-                    {%- if current[topic.def_name] %}</u>{%- endif %}</strong>
-                <small>{{ topic.description }}</small>
-            </a>
-        </div>
+    <div class="central-featured-subject subject{{  loop.index  }}">
+        <a href="{{topic.def_name}}" title="{{ topic.subject }} vocab search" class="link-box">
+            <strong class="expand">
+                {%- if current[topic.def_name] %}<u>{%- endif %}
+                {{ topic.shorthand }}
+                {%- if current[topic.def_name] %}</u>{%- endif %}</strong>
+            <small>{{ topic.description }}</small>
+        </a>
+    </div>
     % endfor
 </div>
 
@@ -62,7 +66,8 @@
 
 <div class="lang-list-border"></div>
 <p class="site-license">
-    <small><br><a href="https://github.com/davidhaas6/apvocab">Source code</a> - <a href="/about">About this site</a> - <a href="/tips">Search tips</a></small>
+    <small><br><a href="https://github.com/davidhaas6/apvocab">Source code</a> - <a href="/about">About this site</a> -
+        <a href="/tips">Search tips</a></small>
 </p>
 
 </body>
