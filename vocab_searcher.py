@@ -40,7 +40,7 @@ class VocabSearch:
 
     # Cleans junk off of the end of terms
     def clean_term(self, term):
-        if term[-1] in ['-', ':']:
+        if term[-1] in ['-', ':', '*']:
             return term[:-1]
         return term
 

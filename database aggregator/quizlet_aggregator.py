@@ -1,6 +1,6 @@
-import requests
-import pickle
 import math
+import pickle
+import requests
 
 
 def main(): pass
@@ -21,11 +21,12 @@ def search_page(search_term, page):
     return api_get('https://api.quizlet.com/2.0/search/sets?q=' + search_term + '&per_page=50&page=' + str(page) + '&')
 
 
-def add_terms(terms):
+def add_terms(terms, definitions):
     defs = {}
     for i in range(len(terms)):
-        if len(terms[i]['definition'].strip()) > 1:
-            defs[terms[i]['term']] = terms[i]['definition']
+        definition = terms[i]['definition']
+        if len(definition.strip()) > 1 and definition not in definitions.values():
+            defs[terms[i]['term']] = definition
     return defs
 
 
@@ -39,18 +40,19 @@ def fill_vocab(search_terms, max_terms):
             page_sets = search_page(term, page)
             for quiz_set in page_sets['sets']:
                 try:
-                    definitions.update(add_terms(get_terms(quiz_set['id'])))
+                    definitions.update(add_terms(get_terms(quiz_set['id']), definitions))
                 except Exception as e:
                     print e
                 if len(definitions) >= max_terms:
                     return definitions
     return definitions
 
+
 if __name__ == "__main__":
     main()
     max_num_terms = 25000
-    terms = ['AP Human Geography']
-    vocab = fill_vocab(terms, max_num_terms)
+    search = ['AP Human Geography']
+    vocab = fill_vocab(search, max_num_terms)
     print len(vocab)
 
     with open('../static/defs/humangeo_defs.pickle', 'wb') as handle:

@@ -13,7 +13,7 @@ def make_def((subject_name, subject_terms)):
 
 subjects = [('enviro', ['AP Enviro', 'APES']), ('gov', ['AP Gov', 'APGOV']), ('bio', ['AP Biology', 'AP Bio']),
             ('econ', ['AP Micro macro']), ('world', ['AP World History', 'AP World']),
-            ('ushistory', ['APUSH', 'AP US History']), ('lang', ['AP Lang']), ('lit', ['AP Lit']),
+            ('ushistory', ['AP US History', 'APUSH']), ('lang', ['AP Lang']), ('humangeo', ['AP Human Geography']),
             ('euro', ['AP Euro'])]
 
 for subject in subjects:
