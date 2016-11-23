@@ -3,7 +3,7 @@
 <div class="search-container">
     <form action="" method="post" name="login" class="pure-form" id="search-form">
         <fieldset>
-            <div class="search-input" id="search-input">
+            <div class="search-input" id="search-input" tabindex="0">
                 {{ form.hidden_tag() }}
                 {{ form.term(size=30, maxlength=140, id="searchInput", placeholder=search_topic, autofocus="") }}
             </div>
@@ -13,13 +13,48 @@
         </fieldset>
     </form>
 </div>
+<script>
+function strip(html)
+{
+   var tmp = document.createElement("DIV");
+   tmp.innerHTML = html;
+   return tmp.textContent || tmp.innerText || "";
+}
+
+function copyToClipboard(elementId) {
+    //document.getElementById(elementId).classList.remove('clickedResult');
+    //document.getElementById(elementId).className ='clickedResult';
+    var menu = document.querySelector('#'+elementId) // Using a class instead, see note below.
+    menu.classList.toggle('clickedResult');
+
+    // Create a "hidden" input
+    var aux = document.createElement("input");
+
+    // Assign it the value of the specified element
+    aux.setAttribute("value", strip(document.getElementById(elementId).innerHTML));
+
+    // Append it to the body
+    document.body.appendChild(aux);
+
+    // Highlight its content
+    aux.select();
+
+    // Copy the highlighted text
+    document.execCommand("copy");
+
+    // Remove it from the body
+    document.body.removeChild(aux);
+
+}
+</script>
 <div class="results">
-        % with messages = get_flashed_messages()
+        % with messages = get_flashed_messages()[0]
             % if messages
+                % set count = 0
                 % for message in messages
-                    % for m in message
-                        <p><b>{{ m[0] }}</b>: {{ m[1] }}<br/><br/></p>
-                    % endfor
+                    <p><span class="" id="def{{count}}" onclick="copyToClipboard('def{{count}}')">
+                        <b>{{ message[0] }}</b>: {{ message[1] }}</span><br/><br/></p>
+                    % set count = count + 1
                 % endfor
             % endif
         % endwith

@@ -1037,3 +1037,17 @@ hr {
 strong.expand:hover{
     letter-spacing: 1px;
 }
+
+
+@keyframes changeColor{
+    0% {background-color: white;}
+    50% {background-color: Gainsboro;}
+    100% {background-color: white;}
+}
+
+.result{}
+
+.clickedResult{
+    animation-name: changeColor;
+	animation-duration: 1s;
+}
