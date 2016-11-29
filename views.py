@@ -24,6 +24,7 @@ euro = TopicSearch(
 humangeo = TopicSearch(
     def_name='humangeo', subject='AP Human Geography', shorthand='AP Human Geo', description='dis Ghana be good')
 
+# This determines the order they appear on the site
 topics = [world, enviro,
           humangeo, bio,
           gov, econ,
