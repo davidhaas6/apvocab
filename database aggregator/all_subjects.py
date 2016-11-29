@@ -2,7 +2,7 @@ from quizlet_aggregator import Filler
 from difflib import SequenceMatcher
 import pickle
 
-
+'''
 def similar(a, b):
     return SequenceMatcher(None, a, b).ratio()
 
@@ -18,15 +18,16 @@ def remove_similar(results):
                     new_results.remove(results[j])
 
     return new_results
+'''
 
 
 def make_def((subject_name, subject_terms)):
     max_num_terms = 30000
     print 'Starting', subject_terms[0] + '...'
     vocab = Filler().get_vocab(subject_terms, max_num_terms)
-    print 'Finished!'
-    print 'Removing similar results...'
-    vocab = remove_similar(vocab)
+    # print 'Finished!'
+    # print 'Removing similar results...'
+    # vocab = remove_similar(vocab)
     print 'Finished!\n'
     with open('../static/defs/' + subject_name + '_defs.pickle', 'wb') as handle:
         pickle.dump(vocab, handle)
