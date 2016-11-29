@@ -1,4 +1,3 @@
-from difflib import SequenceMatcher
 import pickle
 import re
 
@@ -36,10 +35,7 @@ class VocabSearch:
                                                    'Here ya go :)'), ('', '')] + new_answers
             return not_found_statement
 
-        # If you remove_similar for all of the results, it can take a long time if there's a lot of results, so i do
-        # 1.25 times the amount of desired results just to have a little bit of a buffer space
-        answers = self.remove_similar(self.sort_results(answers)[:int(num_results*1.25)])
-        return answers
+        return self.sort_results(answers)[:num_results]
 
     # Cleans junk off of the end of terms and capitalizes it
     def clean_term(self, term):
@@ -51,7 +47,7 @@ class VocabSearch:
         definition = ' '.join(definition.split())
         try:
             # Chop off beginning characters that aren't letters/numbers and aren't those exceptions listed below
-            while not str(definition[0]).isalnum() and definition[0] not in ['(', '\"', '\'']:
+            while len(definition) > 0 and not str(definition[0]).isalnum() and definition[0] not in ['(', '\"', '\'']:
                 definition = definition[1:]
         except UnicodeEncodeError:
             definition = definition[1:].strip()
@@ -70,18 +66,3 @@ class VocabSearch:
 
         # Removes the len(term) element to the array returns to the format: [(term1, definition1), ...]
         return [(elem[1]) for elem in len_arr]
-
-    def similar(self, a, b):
-        return SequenceMatcher(None, a, b).ratio()
-
-    # Takes a while for long lists b/c similar() is a bit resource intensive
-    def remove_similar(self, results):
-        ratio_threshold = .95
-        new_results = results[:]
-        for i in range(0, len(results)):
-            for j in range(i+1, len(results)):
-                if self.similar(results[i][1], results[j][1]) >= ratio_threshold:
-                    if results[j] in new_results:
-                        new_results.remove(results[j])
-
-        return new_results

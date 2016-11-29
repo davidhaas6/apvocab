@@ -50,12 +50,12 @@ def fill_vocab(search_terms, max_terms):
 
 if __name__ == "__main__":
     main()
-    max_num_terms = 25000
-    search = ['AP Human Geography']
+    max_num_terms = 30000
+    search = ['AP Environmental Sciences']
     vocab = fill_vocab(search, max_num_terms)
     print len(vocab)
 
-    with open('../static/defs/humangeo_defs.pickle', 'wb') as handle:
+    with open('../static/defs/enviro_defs.pickle', 'wb') as handle:
         pickle.dump(vocab, handle)
 
 
