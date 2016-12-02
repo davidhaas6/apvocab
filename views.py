@@ -1,5 +1,6 @@
 from flask import render_template
 from TopicSearch import TopicSearch
+from datetime import datetime
 from init import app
 
 gov = TopicSearch(
@@ -24,12 +25,19 @@ euro = TopicSearch(
 humangeo = TopicSearch(
     def_name='humangeo', subject='AP Human Geography', shorthand='AP Human Geo', description='dis Ghana be good')
 
+chem = TopicSearch(
+    def_name='chem', subject='AP Chemistry', shorthand='AP Chemistry', description='idek dood')
+
 # This determines the order they appear on the site
 topics = [world, enviro,
           humangeo, bio,
           gov, econ,
           ushistory, psych,
           euro, lang]
+num_searches = 0
+i = datetime.now()
+boot_time = i.strftime('%b %d, %I:%M %p')
+
 
 
 @app.route('/')
@@ -40,7 +48,7 @@ def index():
 
 @app.route('/about')
 def about():
-    return render_template("about.html", current={}, topics=topics)
+    return render_template("about.html", current={}, topics=topics, search_count=num_searches, boot_time=boot_time)
 
 
 @app.route('/tips')
@@ -96,3 +104,8 @@ def euro_page():
 @app.route('/humangeo', methods=['GET', 'POST'])
 def humangeo_page():
     return humangeo.search()
+
+
+@app.route('/chem', methods=['GET', 'POST'])
+def chem_page():
+    return chem.search()

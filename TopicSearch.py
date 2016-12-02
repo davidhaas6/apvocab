@@ -21,6 +21,7 @@ class TopicSearch:
             term = form.term.data
             print term
             flash(self.vocab.search(term))
+            views.num_searches += 1
         return render_template('search.html',
                                title='Search a term',
                                form=form,
