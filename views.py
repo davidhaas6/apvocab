@@ -2,6 +2,7 @@ from flask import render_template
 from TopicSearch import TopicSearch
 from datetime import datetime
 from init import app
+import pytz
 
 gov = TopicSearch(
     def_name='gov', subject='AP Government', shorthand='AP Government', description='mr. dolan turnip')
@@ -35,7 +36,8 @@ topics = [world, enviro,
           ushistory, psych,
           euro, lang]
 num_searches = 0
-i = datetime.now()
+est = pytz.timezone('US/Eastern')
+i = datetime.now(est)
 boot_time = i.strftime('%b %d, %I:%M %p')
 
 
