@@ -37,22 +37,22 @@ class VocabSearch:
 
         return self.sort_results(answers)[:num_results]
 
+    def remove_non_ascii(self, string):
+        return "".join(i for i in string if ord(i) < 128)
+
     # Cleans junk off of the end of terms and capitalizes it
     def clean_term(self, term):
+        term = self.remove_non_ascii(term)
         if term[-1] in ['-', ':', '*']:
             return term[:-1]
         return term.title().strip()
 
     def clean_definition(self, definition):
         definition = ' '.join(definition.split())
-        try:
-            # Chop off beginning characters that aren't letters/numbers and aren't those exceptions listed below
-            while len(definition) > 0 and not str(definition[0]).isalnum() and definition[0] not in ['(', '\"', '\'']:
-                definition = definition[1:]
-        except UnicodeEncodeError:
-            definition = definition[1:].strip()
-            while not str(definition[0]).isalnum() and definition[0] not in ['(', '\"', '\'']:
-                definition = definition[1:]
+        definition = self.remove_non_ascii(definition)
+        # Chop off beginning characters that aren't letters/numbers and aren't those exceptions listed below
+        while len(definition) > 0 and not str(definition[0]).isalnum() and definition[0] not in ['(', '\"', '\'']:
+            definition = definition[1:]
 
         return definition.strip().capitalize()
 
