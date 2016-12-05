@@ -1064,23 +1064,23 @@ a.indexSubtitle:active, a.indexSubtitle:focus {
 	color:rgba(0,0,30,.35);
 }
 
-
-@keyframes changeColor{
+@keyframes darkenText{
     0% {color: rgba(0,0,0,.35);}
     50% {color: rgba(0,0,0,.70);}
     100% {color: rgba(0,0,0,.35);}
 }
 
 a.indexSubtitle:active, a.indexSubtitle:hover{
-    animation-name: changeColor;
+    animation-name: darkenText;
 	animation-duration: 2s;
 }
 
 a.subtitleLinks{
     color:rgba(0,0,30,.35);
     text-align:center;
-    line-height:15px;
+    line-height:21px;
     text-decoration: underline;
+    font-size:95%
 }
 
 a.subtitleLinks:hover{
