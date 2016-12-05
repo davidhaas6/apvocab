@@ -1,23 +1,32 @@
 {% extends "base.html" %}
 {% block content %}
 <p class="indexSubtitle">Click a subject to search</p>
-<div style="text-align:center;padding-bottom: 10px;">
-    <a href="#" id="clickMore" class="indexSubtitle" onclick="toggleVisible('xtraSubjects')">More subjects
-        <i class="fa fa-angle-down" style="font-size:14px;color:light-grey"></i>
+<div style="text-align:center;padding-bottom: 8px;">
+    <a href="#" id="clickMore" class="indexSubtitle" onclick="toggleVisible('xtraSubjects');toggleArrow('arrow');">
+        More subjects <i id="arrow" class="fa fa-angle-down" style="font-size:14px;color:light-grey"></i>
     </a>
 </div>
 
-<div id="xtraSubjects" style="display:none;text-align:center;">
-        <a href="/chem" class="subtitleLinks">AP Chemistry<br></a>
-        <a href="/calc" class="subtitleLinks">AP Calculus</a>
+<div id="xtraSubjects" style="display:none;text-align:center;padding-bottom: 10px;">
+    % for topic in more_topics
+        <a href="{{topic.def_name}}" class="subtitleLinks">{{ topic.subject }}<br></a>
+    % endfor
 </div><br>
+
 <script>
   function toggleVisible(target){
-    elm = document.getElementById(target)
-    if (elm.style.display == 'none')
-        elm.style.display = 'block'
+    elem = document.getElementById(target)
+    if (elem.style.display == 'none')
+        elem.style.display = 'block'
     else
-        elm.style.display = 'none'
+        elem.style.display = 'none'
+  }
+  function toggleArrow(target){
+    elem = document.getElementById(target)
+    if (elem.className == "fa fa-angle-down")
+        elem.className = "fa fa-angle-up"
+    else
+        elem.className = "fa fa-angle-down"
   }
 </script>
 {% endblock %}

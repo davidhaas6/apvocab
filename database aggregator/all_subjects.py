@@ -32,11 +32,15 @@ def make_def((subject_name, subject_terms)):
     with open('../static/defs/' + subject_name + '_defs.pickle', 'wb') as handle:
         pickle.dump(vocab, handle)
 
-
+'''
 subjects = [('enviro', ['AP Enviro', 'APES']), ('gov', ['AP Gov', 'APGOV']), ('bio', ['AP Biology', 'AP Bio']),
             ('econ', ['AP Micro macro']), ('world', ['AP World History', 'AP World']),
             ('ushistory', ['AP US History', 'APUSH']), ('lang', ['AP Lang']), ('humangeo', ['AP Human Geography']),
             ('euro', ['AP Euro']), ('psych', ['AP Psychology'])]
+'''
+
+subjects = [('physics-c', ['AP Physics C']), ('physics1', ['AP Physics 1']), ('physics2', ['AP Physics 2']),
+            ('compgov', ['AP Comparative Government']), ('lit', ['AP Lit']), ('stat', ['AP Statistics'])]
 
 for subject in subjects:
     try:
