@@ -38,10 +38,12 @@ physics1 = TopicSearch(
     def_name='physics1', subject='AP Physics 1', shorthand='AP Physics 1', description='11111')
 physics2 = TopicSearch(
     def_name='physics2', subject='AP Physics 2', shorthand='AP Physics 2', description='22222')
-# compgov = TopicSearch(
-#     def_name='compgov', subject='AP Comparative Government', shorthand='AP Comp-Gov', description='comp this')
-# stat = TopicSearch(
-#     def_name='stat', subject='AP Statistics', shorthand='AP Statistics', description='stat my rat')
+compgov = TopicSearch(
+    def_name='compgov', subject='AP Comparative Government', shorthand='AP Comp-Gov', description='comp this')
+lit = TopicSearch(
+    def_name='lit', subject='AP Literature', shorthand='AP Lit', description='shit\'s lit')
+stat = TopicSearch(
+    def_name='stat', subject='AP Statistics', shorthand='AP Statistics', description='stat my rat')
 
 # This determines the order they appear on the site
 main_topics = [world, enviro,
@@ -49,7 +51,7 @@ main_topics = [world, enviro,
                gov, econ,
                ushistory, psych,
                euro, lang]
-side_topics = [chem, calc, physics_c, physics1, physics2,]
+side_topics = [chem, calc, stat, physics_c, physics1, physics2, compgov, lit]
 all_topics = main_topics + side_topics
 
 num_searches = 0
