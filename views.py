@@ -1,8 +1,10 @@
-from flask import render_template
-from TopicSearch import TopicSearch
 from datetime import datetime
-from init import app
+
 import pytz
+from flask import render_template
+
+from TopicSearch import TopicSearch
+from init import app
 
 gov = TopicSearch(
     def_name='gov', subject='AP Government', shorthand='AP Government', description='mr. dolan turnip')
@@ -28,86 +30,38 @@ humangeo = TopicSearch(
 
 chem = TopicSearch(
     def_name='chem', subject='AP Chemistry', shorthand='AP Chemistry', description='idek dood')
+calc = TopicSearch(
+    def_name='calc', subject='AP Calculus', shorthand='AP Calculus', description='dont forget +c')
 
 # This determines the order they appear on the site
-topics = [world, enviro,
-          humangeo, bio,
-          gov, econ,
-          ushistory, psych,
-          euro, lang]
+main_topics = [world, enviro,
+               humangeo, bio,
+               gov, econ,
+               ushistory, psych,
+               euro, lang]
+all_topics = main_topics + [chem, calc, ]
+
 num_searches = 0
 est = pytz.timezone('US/Eastern')
 i = datetime.now(est)
 boot_time = i.strftime('%b %d, %I:%M %p')
 
 
-
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template("index.html", current={}, topics=topics)
+    return render_template("index.html", current={}, topics=main_topics)
 
 
 @app.route('/about')
 def about():
-    return render_template("about.html", current={}, topics=topics, search_count=num_searches, boot_time=boot_time)
+    return render_template("about.html", current={}, topics=main_topics, search_count=num_searches, boot_time=boot_time)
 
 
 @app.route('/tips')
 def tips():
-    return render_template("tips.html", current={}, topics=topics)
+    return render_template("tips.html", current={}, topics=main_topics)
 
 
-@app.route('/gov', methods=['GET', 'POST'])
-def gov_page():
-    return gov.search()
-
-
-@app.route('/enviro', methods=['GET', 'POST'])
-def enviro_page():
-    return enviro.search()
-
-
-@app.route('/psych', methods=['GET', 'POST'])
-def psych_page():
-    return psych.search()
-
-
-@app.route('/bio', methods=['GET', 'POST'])
-def bio_page():
-    return bio.search()
-
-
-@app.route('/econ', methods=['GET', 'POST'])
-def econ_page():
-    return econ.search()
-
-
-@app.route('/world', methods=['GET', 'POST'])
-def world_page():
-    return world.search()
-
-
-@app.route('/ushistory', methods=['GET', 'POST'])
-def ushistory_page():
-    return ushistory.search()
-
-
-@app.route('/lang', methods=['GET', 'POST'])
-def lang_page():
-    return lang.search()
-
-
-@app.route('/euro', methods=['GET', 'POST'])
-def euro_page():
-    return euro.search()
-
-
-@app.route('/humangeo', methods=['GET', 'POST'])
-def humangeo_page():
-    return humangeo.search()
-
-
-@app.route('/chem', methods=['GET', 'POST'])
-def chem_page():
-    return chem.search()
+for t in all_topics:
+    app.add_url_rule(rule='/' + t.def_name, endpoint=t.def_name, view_func=t.search, methods=['GET', 'POST'])
