@@ -27,4 +27,4 @@ class TopicSearch:
                                form=form,
                                search_topic=search_topic,
                                current={self.def_name: True},
-                               topics=views.topics)
+                               topics=views.main_topics)

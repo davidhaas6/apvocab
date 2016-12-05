@@ -1012,7 +1012,7 @@ hr {
 	height: 20px
 }
 
-@keyframes spaceboots {
+@keyframes shake {
 	0% { transform: translate(2px, 1px) rotate(0deg); }
 	10% { transform: translate(-1px, -2px) rotate(-1deg); }
 	20% { transform: translate(-3px, 0px) rotate(1deg); }
@@ -1027,7 +1027,7 @@ hr {
 }
 .central-featured-logo:hover,
 .central-featured-logo:focus {
-	animation-name: spaceboots;
+	animation-name: shake;
 	animation-duration: 0.2s;
 	transform-origin:50% 50%;
 	animation-iteration-count: infinite;
@@ -1050,4 +1050,39 @@ strong.expand:hover{
 .clickedResult{
     animation-name: changeColor;
 	animation-duration: 1s;
+}
+
+.indexSubtitle{
+    color:rgba(0,0,0,.35);
+    text-align:center;
+    line-height:20px;
+    letter-spacing: 0px;
+}
+
+a.indexSubtitle:active, a.indexSubtitle:focus {
+	outline: 0;
+	color:rgba(0,0,30,.35);
+}
+
+
+@keyframes changeColor{
+    0% {color: rgba(0,0,0,.35);}
+    50% {color: rgba(0,0,0,.70);}
+    100% {color: rgba(0,0,0,.35);}
+}
+
+a.indexSubtitle:active, a.indexSubtitle:hover{
+    animation-name: changeColor;
+	animation-duration: 2s;
+}
+
+a.subtitleLinks{
+    color:rgba(0,0,30,.35);
+    text-align:center;
+    line-height:15px;
+    text-decoration: underline;
+}
+
+a.subtitleLinks:hover{
+    font-size:110%
 }

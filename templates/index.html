@@ -1,4 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
-    <p style="color:rgba(0,0,0,.35);text-align:center;line-height:25px;">Click a subject to search</p><br>
+<p class="indexSubtitle">Click a subject to search</p>
+<div style="text-align:center;padding-bottom: 10px;">
+    <a href="#" id="clickMore" class="indexSubtitle" onclick="toggleVisible('xtraSubjects')">More subjects
+        <i class="fa fa-angle-down" style="font-size:14px;color:light-grey"></i>
+    </a>
+</div>
+
+<div id="xtraSubjects" style="display:none;text-align:center;">
+        <a href="/chem" class="subtitleLinks">AP Chemistry<br></a>
+        <a href="/calc" class="subtitleLinks">AP Calculus</a>
+</div><br>
+<script>
+  function toggleVisible(target){
+    elm = document.getElementById(target)
+    if (elm.style.display == 'none')
+        elm.style.display = 'block'
+    else
+        elm.style.display = 'none'
+  }
+</script>
 {% endblock %}
+
