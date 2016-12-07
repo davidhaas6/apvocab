@@ -52,8 +52,9 @@ function copyToClipboard(elementId) {
             % if messages
                 % set count = 0
                 % for message in messages
-                    <p><span class="" id="def{{count}}" onclick="copyToClipboard('def{{count}}')">
-                        <b>{{ message[0] }}</b>: {{ message[1] }}</span><br/><br/></p>
+                    <p> <b>{{ message[0] }}</b>:
+                        <span class="" id="def{{count}}" onclick="copyToClipboard('def{{count}}')">{{ message[1] }}</span>
+                        <br/><br/></p>
                     % set count = count + 1
                 % endfor
             % endif
