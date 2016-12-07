@@ -51,7 +51,7 @@ main_topics = [world, enviro,
                gov, econ,
                ushistory, psych,
                euro, lang]
-side_topics = [chem, calc, stat, physics_c, physics1, physics2, compgov, lit]
+side_topics = [chem, calc, stat, physics_c, physics1, physics2, lit, compgov]
 all_topics = main_topics + side_topics
 
 num_searches = 0
