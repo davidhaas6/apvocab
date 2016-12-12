@@ -1076,7 +1076,7 @@ a.indexSubtitle:active, a.indexSubtitle:hover{
 }
 
 a.subtitleLinks{
-    color:rgba(0,0,30,.35);
+    color:rgba(0,0,30,.6);
     text-align:center;
     line-height:21px;
     text-decoration: underline;
