@@ -47,13 +47,15 @@ function copyToClipboard(elementId) {
 
 }
 </script>
+
 <div class="results">
         % with messages = get_flashed_messages()[0]
             % if messages
                 % set count = 0
                 % for message in messages
-                    <p><b>{{ message[0] }}</b>: <span class="" id="def{{count}}" onclick="copyToClipboard('def{{count}}')">{{ message[1] }}</span>
-                        <br/><br/></p>
+                    <div class="tooltip">
+                        <p><b>{{ message[0] }}</b>: <span class="" id="def{{count}}" onclick="copyToClipboard('def{{count}}')">{{ message[1] }}</span><br/></p><span class="tooltiptext tooltip-right">Click to copy!</span>
+                    </div>
                     % set count = count + 1
                 % endfor
             % endif
