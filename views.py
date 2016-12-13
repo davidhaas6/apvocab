@@ -11,12 +11,12 @@ gov = TopicSearch(
 enviro = TopicSearch(
     def_name='enviro', subject='AP Environmental Sciences', shorthand='AP Enviro', description='rip earth')
 psych = TopicSearch(
-    def_name='psych', subject='AP Psychology', shorthand='AP Psych', description='also a good tv show')
+    def_name='psych', subject='AP Psychology', shorthand='AP Psych', description='syyyke')
 bio = TopicSearch(
     def_name='bio', subject='AP Biology', shorthand='AP Biology', description='biolology')
 econ = TopicSearch(
     def_name='econ', subject='AP Micro/macroeconomics', shorthand='AP Micro/Macro',
-    description='grades lower than the peso')
+    description='dont waste-o ur peso')
 world = TopicSearch(
     def_name='world', subject='AP World History', shorthand='AP World', description='i can show u the world')
 ushistory = TopicSearch(
@@ -24,7 +24,7 @@ ushistory = TopicSearch(
 lang = TopicSearch(
     def_name='lang', subject='AP English Language', shorthand='AP Lang', description='lang gang')
 euro = TopicSearch(
-    def_name='euro', subject='AP European History', shorthand='AP Euro History', description='ur a\'peein')
+    def_name='euro', subject='AP European History', shorthand='AP Euro History', description='[insert quality pun]')
 humangeo = TopicSearch(
     def_name='humangeo', subject='AP Human Geography', shorthand='AP Human Geo', description='dis Ghana be good')
 
