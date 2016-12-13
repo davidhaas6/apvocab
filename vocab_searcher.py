@@ -37,7 +37,8 @@ class VocabSearch:
 
         return self.sort_results(answers)[:num_results]
 
-    def remove_non_ascii(self, string):
+    @staticmethod
+    def remove_non_ascii(string):
         return "".join(i for i in string if ord(i) < 128)
 
     # Cleans junk off of the end of terms and capitalizes it
@@ -57,7 +58,8 @@ class VocabSearch:
         return definition.strip().capitalize()
 
     # Sorts the results so that results with the shortest term appear first -- meant to improve accuracy of results
-    def sort_results(self, results):
+    @staticmethod
+    def sort_results(results):
         # Creates an array of the results with the format: [(len(term1), (term1, definition1)), ...]
         len_arr = [(len(term), (term, definition)) for term, definition in results]
 
