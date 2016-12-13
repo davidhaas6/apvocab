@@ -19,9 +19,9 @@ class TopicSearch:
         search_topic = "Search " + self.subject
         if form.validate_on_submit():
             term = form.term.data
-            print term
             flash(self.vocab.search(term))
             views.num_searches += 1
+            print term, views.num_searches
         return render_template('search.html',
                                title='Search a term',
                                form=form,
