@@ -39,7 +39,7 @@ def get_params():
     secret_token = 'VB3bgNCj3b86NEZDkD6Gfa'
     code = request.args.get('code')
     print code
-    pars = {'grant_type': 'authorization_code', 'code': code, 'redirect_uri': request.url_root + url_for('quizlet_redirect')}
+    pars = {'grant_type': 'authorization_code', 'code': code, 'redirect_uri': views.quizlet_redirect_url}
     response = requests.post('https://api.quizlet.com/oauth/token', params=pars, auth=(views.client_id, secret_token))
     print response.json()
     return response.json()['access_token']

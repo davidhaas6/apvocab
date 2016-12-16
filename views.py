@@ -59,6 +59,8 @@ num_searches = 0
 est = pytz.timezone('US/Eastern')
 i = datetime.now(est)
 boot_time = i.strftime('%b %d, %I:%M %p')
+
+quizlet_redirect_url = request.url_root[:-1] + url_for('quizlet_redirect')
 client_id = 'nMPK85cZxV'
 access_token = ''
 
@@ -88,9 +90,8 @@ def secret():
 def new_set():
     referral = request.referrer
     print referral
-    return_url = request.url_root[:-1] + url_for('quizlet_redirect')
     redirect_url = 'https://quizlet.com/authorize?response_type=code&client_id=' + client_id + \
-                   '&scope=write_set&state=' + referral + '&redirect_uri=' + return_url
+                   '&scope=write_set&state=' + referral + '&redirect_uri=' + quizlet_redirect_url
     return redirect(redirect_url, code=302)
 
 
