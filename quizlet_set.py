@@ -16,7 +16,6 @@ class StudySet:
         self.title = title
 
     def create_set(self):
-
         set_endpoint_url = 'https://api.quizlet.com/2.0/sets'
         terms = [x[0] for x in self.vocab]
         definitions = [x[1] for x in self.vocab]

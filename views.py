@@ -62,6 +62,7 @@ boot_time = i.strftime('%b %d, %I:%M %p')
 
 client_id = 'nMPK85cZxV'
 access_token = ''
+study_set = None
 
 
 @app.route('/')
@@ -98,10 +99,11 @@ def new_set():
 @app.route('/quizlet_redirect')
 def quizlet_redirect():
     global access_token
+    global study_set
     params = quizlet_set.get_params()
     access_token = params[0]
     prev = params[1]
-    print 'redirecting to ' + prev
+    study_set = quizlet_set.StudySet(access_token=access_token)
     return redirect(prev)
 
 for t in all_topics:
