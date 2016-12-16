@@ -2,12 +2,12 @@ import requests
 
 
 # SETS MUST CONTAIN AT LEAST 2 TERMS AND DEFS
-def make_set(title, vocab_set, access_token):
+def make_set(title, vocab_set, token):
     terms = [x[0] for x in vocab_set]
     definitions = [x[1] for x in vocab_set]
     url = 'https://api.quizlet.com/2.0/sets'
 
-    header = {'Authorization': 'Bearer ' + access_token}
+    header = {'Authorization': 'Bearer ' + token}
 
     set_info = \
         {'terms[]': terms, 'definitions[]': definitions, 'title': title, 'lang_terms': 'en',
@@ -15,13 +15,8 @@ def make_set(title, vocab_set, access_token):
     return requests.post(url, headers=header, params=set_info)
 
 
-token = 'VB3bgNCj3b86NEZDkD6Gfa'
+secret_token = 'VB3bgNCj3b86NEZDkD6Gfa'
 client_id = 'nMPK85cZxV'
-# r = make_set('hi123123', [('t1', 'd1'), ('t2', 'd2')], token)
-# print r.url
-# print r.json()
-# pprint(r.headers)
-# print type(r)
 
 redirect = 'https://quizlet.com/authorize?response_type=code&client_id=' + client_id + '&scope=write_set&state=xd'
 
@@ -30,7 +25,7 @@ print redirect
 # GET THE STUFF FROM THE URL PARAMETERS WHEN UR REDIRECTED
 code = raw_input('code=')
 pars = {'grant_type': 'authorization_code', 'code': code, 'redirect_uri': 'http://search.apvocab.com/'}
-r = requests.post('https://api.quizlet.com/oauth/token', params=pars, auth=(client_id, token))
+r = requests.post('https://api.quizlet.com/oauth/token', params=pars, auth=(client_id, secret_token))
 print r.json()
 access_token = r.json()['access_token']
 

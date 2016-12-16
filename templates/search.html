@@ -49,7 +49,7 @@ function copyToClipboard(elementId) {
 </script>
 
 <div class="results">
-        % with messages = get_flashed_messages()[0]
+        % with messages = get_flashed_messages(category_filter=["definitions"])[0]
             % if messages
                 % set count = 0
                 % for message in messages
