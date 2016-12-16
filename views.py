@@ -63,16 +63,6 @@ client_id = 'nMPK85cZxV'
 access_token = ''
 
 
-@app.route('/new-set', methods=['GET', 'POST'])
-def new_set():
-    referral = request.referrer
-    print referral
-    return_url = request.url_root[:-1] + url_for('quizlet_redirect')
-    redirect_url = 'https://quizlet.com/authorize?response_type=code&client_id=' + client_id + \
-                   '&scope=write_set&state=' + referral + '&redirect_uri=' + return_url
-    return redirect(redirect_url, code=302)
-
-
 @app.route('/')
 @app.route('/index')
 def index():
@@ -87,6 +77,21 @@ def about():
 @app.route('/tips')
 def tips():
     return render_template("tips.html", current={}, topics=main_topics)
+
+
+@app.route('/secret')
+def secret():
+    return render_template("secret_tests.html", current={}, topics=main_topics)
+
+
+@app.route('/new-set', methods=['GET', 'POST'])
+def new_set():
+    referral = request.referrer
+    print referral
+    return_url = request.url_root[:-1] + url_for('quizlet_redirect')
+    redirect_url = 'https://quizlet.com/authorize?response_type=code&client_id=' + client_id + \
+                   '&scope=write_set&state=' + referral + '&redirect_uri=' + return_url
+    return redirect(redirect_url, code=302)
 
 
 @app.route('/quizlet_redirect')
