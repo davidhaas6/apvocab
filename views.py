@@ -1,10 +1,11 @@
 from datetime import datetime
 
 import pytz
-from flask import render_template
+from flask import render_template, redirect, url_for, request
 
 from TopicSearch import TopicSearch
 from init import app
+import quizlet_set
 
 gov = TopicSearch(
     def_name='gov', subject='AP Government', shorthand='AP Government', description='mr. dolan turnip')
@@ -58,6 +59,18 @@ num_searches = 0
 est = pytz.timezone('US/Eastern')
 i = datetime.now(est)
 boot_time = i.strftime('%b %d, %I:%M %p')
+client_id = 'nMPK85cZxV'
+access_token = ''
+
+
+@app.route('/new-set', methods=['GET', 'POST'])
+def new_set():
+    referral = request.referrer
+    print referral
+    return_url = request.url_root[:-1] + url_for('quizlet_redirect')
+    redirect_url = 'https://quizlet.com/authorize?response_type=code&client_id=' + client_id + \
+                   '&scope=write_set&state=' + referral + '&redirect_uri=' + return_url
+    return redirect(redirect_url, code=302)
 
 
 @app.route('/')
@@ -75,6 +88,15 @@ def about():
 def tips():
     return render_template("tips.html", current={}, topics=main_topics)
 
+
+@app.route('/quizlet_redirect')
+def quizlet_redirect():
+    global access_token
+    params = quizlet_set.get_params()
+    access_token = params['access_token']
+    prev = params['state']
+    print 'redirecting to ' + prev
+    return redirect(prev)
 
 for t in all_topics:
     app.add_url_rule(rule='/' + t.def_name, endpoint=t.def_name, view_func=t.search, methods=['GET', 'POST'])

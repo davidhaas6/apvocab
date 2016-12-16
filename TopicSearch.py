@@ -15,16 +15,16 @@ class TopicSearch:
         self.description = description
 
     def search(self):
-        form = SearchForm()
         search_topic = "Search " + self.subject
-        if form.validate_on_submit():
-            term = form.term.data
+        search_form = SearchForm()
+        if search_form.validate_on_submit():
+            term = search_form.term.data
             flash(self.vocab.search(term), 'definitions')
             views.num_searches += 1
             print term, views.num_searches
         return render_template('search.html',
                                title='Search a term',
-                               form=form,
+                               form=search_form,
                                search_topic=search_topic,
                                current={self.def_name: True},
                                topics=views.main_topics)
