@@ -99,8 +99,8 @@ def new_set():
 def quizlet_redirect():
     global access_token
     params = quizlet_set.get_params()
-    access_token = params['access_token']
-    prev = params['state']
+    access_token = params[0]
+    prev = params[1]
     print 'redirecting to ' + prev
     return redirect(prev)
 
