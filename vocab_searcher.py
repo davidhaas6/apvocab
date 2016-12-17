@@ -17,14 +17,16 @@ class VocabSearch:
         if word.startswith('"') and word.endswith('"'):
             for term in self.defs:
                 if word[1:-1].lower() == term.lower().strip():
-                    answers += [(unicode((self.clean_term(term))),
-                                 unicode(self.clean_definition(self.defs[term])))]
+                    cleaned_def = self.clean_definition(self.defs[term])
+                    if len(cleaned_def) > 1:
+                        answers += [(unicode((self.clean_term(term))), cleaned_def)]
 
         else:
             for term in self.defs:
                 if word.lower() in term.lower().strip():
-                    answers += [(unicode((self.clean_term(term))),
-                                 unicode(self.clean_definition(self.defs[term])))]
+                    cleaned_def = self.clean_definition(self.defs[term])
+                    if len(cleaned_def) > 1:
+                        answers += [(unicode((self.clean_term(term))), cleaned_def)]
 
         not_found_statement = [('No results found for "' + word + '"', ':( Sorry')]
         if len(answers) is 0:
@@ -46,7 +48,7 @@ class VocabSearch:
         term = self.remove_non_ascii(term)
         if term[-1] in ['-', ':', '*']:
             return term[:-1]
-        return term.title().strip()
+        return term.title().strip().capitalize()
 
     def clean_definition(self, definition):
         definition = ' '.join(definition.split())
