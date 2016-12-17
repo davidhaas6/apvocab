@@ -48,7 +48,7 @@ class VocabSearch:
         term = self.remove_non_ascii(term)
         if term[-1] in ['-', ':', '*']:
             return term[:-1]
-        return term.title().strip().capitalize()
+        return term.title().strip()
 
     def clean_definition(self, definition):
         definition = ' '.join(definition.split())
