@@ -56,6 +56,7 @@ function copyToClipboard(elementId) {
                     <div class="tooltip">
                         <p><b>{{ message[0] }}</b>: <span class="" id="def{{count}}" onclick="copyToClipboard('def{{count}}')">{{ message[1] }}</span><br/></p><span class="tooltiptext tooltip-right">Click to copy!</span>
                     </div>
+                    <div style="display:block;"></div>
                     % set count = count + 1
                 % endfor
             % endif
