@@ -35,7 +35,7 @@ class StudySet:
 
         return "https://quizlet.com" + new_set['url']
 
-    class CustomJSONEncoder(JSONEncoder):
+    class JSONEncoder(JSONEncoder):
         def default(self, obj):
             if isinstance(obj, StudySet):
                 info = dict()
@@ -47,7 +47,7 @@ class StudySet:
                 JSONEncoder.default(self, obj)
 
     # Now tell Flask to use the custom class
-    app.json_encoder = CustomJSONEncoder
+    app.json_encoder = JSONEncoder
 
 
 def get_params():
