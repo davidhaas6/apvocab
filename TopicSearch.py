@@ -27,4 +27,5 @@ class TopicSearch:
                                form=search_form,
                                search_topic=search_topic,
                                current={self.def_name: True},
-                               topics=views.main_topics)
+                               topics=views.main_topics,
+                               creating_set=views.study_set is not None)
