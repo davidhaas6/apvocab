@@ -63,7 +63,9 @@ boot_time = i.strftime('%b %d, %I:%M %p')
 
 client_id = 'nMPK85cZxV'
 access_token = ''
-# session['study_set'] = None
+
+
+def study_set_created(): return 'study_set' in session
 
 
 @app.route('/')
@@ -88,8 +90,12 @@ for t in all_topics:
 
 @app.route('/secret')
 def secret():
+    if study_set_created():
+        terms = session['study_set'].vocab
+    else:
+        terms = 'N/A'
     return render_template("secret_tests.html", current={}, topics=main_topics,
-                           creating_set=session['study_set'] is not None, terms=session['study_set'].vocab)
+                           creating_set=study_set_created(), terms=terms)
 
 
 @app.route('/new-set', methods=['GET', 'POST'])
@@ -117,7 +123,7 @@ def quizlet_redirect():
 def add_term():
     term = request.args.get('term')
     definition = request.args.get('def')
-    if session['study_set'] is not None:
+    if study_set_created():
         session['study_set'].add_term(term)
     else:
         return 'ERROR: Cannot add term - no set created'

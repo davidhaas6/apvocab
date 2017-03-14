@@ -28,4 +28,4 @@ class TopicSearch:
                                search_topic=search_topic,
                                current={self.def_name: True},
                                topics=views.main_topics,
-                               creating_set=session['study_set'] is not None)
+                               creating_set=views.study_set_created())
