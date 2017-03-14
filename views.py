@@ -1,11 +1,12 @@
 from datetime import datetime
 
 import pytz
-from flask import render_template, redirect, url_for, request
+from flask import render_template, redirect, url_for, request, jsonify
 
 from TopicSearch import TopicSearch
 from init import app
 import quizlet_set
+
 
 gov = TopicSearch(
     def_name='gov', subject='AP Government', shorthand='AP Government', description='mr. dolan turnip')
@@ -81,6 +82,10 @@ def tips():
     return render_template("tips.html", current={}, topics=main_topics)
 
 
+for t in all_topics:
+    app.add_url_rule(rule='/' + t.def_name, endpoint=t.def_name, view_func=t.search, methods=['GET', 'POST'])
+
+
 @app.route('/secret')
 def secret():
     return render_template("secret_tests.html", current={}, topics=main_topics)
@@ -91,6 +96,7 @@ def new_set():
     referral = request.referrer
     print referral
     return_url = request.url_root[:-1] + url_for('quizlet_redirect')
+    print return_url
     redirect_url = 'https://quizlet.com/authorize?response_type=code&client_id=' + client_id + \
                    '&scope=write_set&state=' + referral + '&redirect_uri=' + return_url
     return redirect(redirect_url, code=302)
@@ -106,5 +112,13 @@ def quizlet_redirect():
     study_set = quizlet_set.StudySet(access_token=access_token)
     return redirect(prev)
 
-for t in all_topics:
-    app.add_url_rule(rule='/' + t.def_name, endpoint=t.def_name, view_func=t.search, methods=['GET', 'POST'])
+
+@app.route('/_add_term')
+def add_term():
+    term = request.args.get('term')
+    definition = request.args.get('def')
+    if study_set is not None:
+        study_set.add_term(term)
+    else:
+        return 'ERROR: Cannot add term - no set created'
+    return jsonify(study_set.add_term((term, definition)))
