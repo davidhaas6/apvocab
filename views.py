@@ -88,7 +88,7 @@ for t in all_topics:
 
 @app.route('/secret')
 def secret():
-    return render_template("secret_tests.html", current={}, topics=main_topics)
+    return render_template("secret_tests.html", current={}, topics=main_topics, creating_set=study_set is not None)
 
 
 @app.route('/new-set', methods=['GET', 'POST'])
