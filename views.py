@@ -63,7 +63,7 @@ boot_time = i.strftime('%b %d, %I:%M %p')
 
 client_id = 'nMPK85cZxV'
 access_token = ''
-session['study_set'] = None
+# session['study_set'] = None
 
 
 @app.route('/')
