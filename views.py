@@ -3,10 +3,9 @@ from datetime import datetime
 import pytz
 from flask import render_template, redirect, url_for, request, jsonify, session
 
+import quizlet_set
 from TopicSearch import TopicSearch
 from init import app
-import quizlet_set
-
 
 gov = TopicSearch(
     def_name='gov', subject='AP Government', shorthand='AP Government', description='mr. dolan turnip')
@@ -65,7 +64,7 @@ client_id = 'nMPK85cZxV'
 access_token = ''
 
 
-def study_set_created(): return 'study_set' in session
+def study_set_created(): return 'vocab' in session
 
 
 @app.route('/')
@@ -91,7 +90,7 @@ for t in all_topics:
 @app.route('/secret')
 def secret():
     if study_set_created():
-        terms = session['study_set'].vocab
+        terms = session['vocab']
     else:
         terms = 'N/A'
     return render_template("secret_tests.html", current={}, topics=main_topics,
@@ -115,7 +114,9 @@ def quizlet_redirect():
     params = quizlet_set.get_params()
     access_token = params[0]
     prev = params[1]
-    session['study_set'] = quizlet_set.StudySet(access_token=access_token)
+    session['access_token'] = access_token
+    session['set_title'] = ''
+    session['vocab'] = []
     return redirect(prev)
 
 
@@ -124,7 +125,7 @@ def add_term():
     term = request.args.get('term')
     definition = request.args.get('def')
     if study_set_created():
-        session['study_set'].add_term(term)
+        session['vocab'] += [[term, definition]]
     else:
         return 'ERROR: Cannot add term - no set created'
-    return jsonify(session['study_set'].add_term((term, definition)))
+    # return jsonify(session['study_set'].add_term((term, definition)))
