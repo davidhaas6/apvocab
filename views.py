@@ -120,7 +120,7 @@ def quizlet_redirect():
     return redirect(prev)
 
 
-@app.route('/_add_term')
+@app.route('/_add_term', methods=['GET', 'POST'])
 def add_term():
     term = request.args.get('term')
     definition = request.args.get('def')
@@ -128,4 +128,4 @@ def add_term():
         session['vocab'] += [[term, definition]]
     else:
         return 'ERROR: Cannot add term - no set created'
-    # return jsonify(session['study_set'].add_term((term, definition)))
+    return jsonify(session['study_set'].add_term((term, definition)))
