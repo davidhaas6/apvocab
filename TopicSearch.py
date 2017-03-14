@@ -1,4 +1,4 @@
-from flask import render_template, flash
+from flask import render_template, flash, session
 from forms import SearchForm
 import vocab_searcher
 import views
@@ -28,4 +28,4 @@ class TopicSearch:
                                search_topic=search_topic,
                                current={self.def_name: True},
                                topics=views.main_topics,
-                               creating_set=views.study_set is not None)
+                               creating_set=session['study_set'] is not None)

@@ -1,7 +1,7 @@
 from datetime import datetime
 
 import pytz
-from flask import render_template, redirect, url_for, request, jsonify
+from flask import render_template, redirect, url_for, request, jsonify, session
 
 from TopicSearch import TopicSearch
 from init import app
@@ -63,7 +63,7 @@ boot_time = i.strftime('%b %d, %I:%M %p')
 
 client_id = 'nMPK85cZxV'
 access_token = ''
-study_set = None
+session['study_set'] = None
 
 
 @app.route('/')
@@ -88,7 +88,8 @@ for t in all_topics:
 
 @app.route('/secret')
 def secret():
-    return render_template("secret_tests.html", current={}, topics=main_topics, creating_set=study_set is not None)
+    return render_template("secret_tests.html", current={}, topics=main_topics,
+                           creating_set=session['study_set'] is not None, terms=session['study_set'].vocab)
 
 
 @app.route('/new-set', methods=['GET', 'POST'])
@@ -105,11 +106,10 @@ def new_set():
 @app.route('/quizlet_redirect')
 def quizlet_redirect():
     global access_token
-    global study_set
     params = quizlet_set.get_params()
     access_token = params[0]
     prev = params[1]
-    study_set = quizlet_set.StudySet(access_token=access_token)
+    session['study_set'] = quizlet_set.StudySet(access_token=access_token)
     return redirect(prev)
 
 
@@ -117,8 +117,8 @@ def quizlet_redirect():
 def add_term():
     term = request.args.get('term')
     definition = request.args.get('def')
-    if study_set is not None:
-        study_set.add_term(term)
+    if session['study_set'] is not None:
+        session['study_set'].add_term(term)
     else:
         return 'ERROR: Cannot add term - no set created'
-    return jsonify(study_set.add_term((term, definition)))
+    return jsonify(session['study_set'].add_term((term, definition)))
