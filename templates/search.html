@@ -44,7 +44,15 @@ function copyToClipboard(elementId) {
 
     // Remove it from the body
     document.body.removeChild(aux);
+}
 
+function addTerm(term_def) {
+    var request = new XMLHttpRequest();
+    var params = "term=" + term_def[0] + "&def=" + term_def[1];
+
+    request.open('POST', '/_add_term', true);
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    request.send(params);
 }
 </script>
 
@@ -54,7 +62,13 @@ function copyToClipboard(elementId) {
                 % set count = 0
                 % for message in messages
                     <div class="tooltip">
-                        <p><b>{{ message[0] }}</b>: <span class="" id="def{{count}}" onclick="copyToClipboard('def{{count}}')">{{ message[1] }}</span><br/></p><span class="tooltiptext tooltip-right">Click to copy!</span>
+                        % if creating_set
+                            <p onclick="addTerm({{message}})"><b>{{ message[0] }}</b>: {{ message[1] }}<br/></p>
+                            <span class="tooltiptext tooltip-right">Click to add!</span>
+                        % else
+                            <p><b>{{ message[0] }}</b>: <span class="" id="def{{count}}" onclick="copyToClipboard('def{{count}}')">{{ message[1] }}</span><br/></p>
+                            <span class="tooltiptext tooltip-right">Click to copy!</span>
+                        % endif
                     </div>
                     <div style="display:block;"></div>
                     % set count = count + 1
