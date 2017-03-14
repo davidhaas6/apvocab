@@ -1,5 +1,6 @@
 import requests
-from flask import url_for, request
+from flask import url_for, request, app
+from flask.json import JSONEncoder
 
 import views
 
@@ -16,24 +17,37 @@ class StudySet:
     def set_title(self, title):
         self.title = title
 
+    def create_set(self):
+        set_endpoint_url = 'https://api.quizlet.com/2.0/sets'
+        terms = [x[0] for x in self.vocab]
+        definitions = [x[1] for x in self.vocab]
 
-def create_set(vocab, title, access_token):
-    set_endpoint_url = 'https://api.quizlet.com/2.0/sets'
-    terms = [x[0] for x in vocab]
-    definitions = [x[1] for x in vocab]
+        if len(self.vocab) < 2:
+            raise Exception('Must have at least two terms!')
+        if len(self.title) == 0:
+            raise Exception('Must have a title!')
 
-    if len(vocab) < 2:
-        raise Exception('Must have at least two terms!')
-    if len(title) == 0:
-        raise Exception('Must have a title!')
+        header = {'Authorization': 'Bearer ' + self.access_token}
+        set_info = \
+            {'terms[]': terms, 'definitions[]': definitions, 'title': self.title, 'lang_terms': 'en',
+             'lang_definitions': 'en'}
+        new_set = requests.post(set_endpoint_url, headers=header, params=set_info)
 
-    header = {'Authorization': 'Bearer ' + access_token}
-    set_info = \
-        {'terms[]': terms, 'definitions[]': definitions, 'title': title, 'lang_terms': 'en',
-         'lang_definitions': 'en'}
-    new_set = requests.post(set_endpoint_url, headers=header, params=set_info)
+        return "https://quizlet.com" + new_set['url']
 
-    return "https://quizlet.com" + new_set['url']
+    class CustomJSONEncoder(JSONEncoder):
+        def default(self, obj):
+            if isinstance(obj, StudySet):
+                info = dict()
+                info['title'] = obj.title
+                info['vocab'] = obj.vocab
+                info['access_token'] = obj.access_token
+                return info
+            else:
+                JSONEncoder.default(self, obj)
+
+    # Now tell Flask to use the custom class
+    app.json_encoder = CustomJSONEncoder
 
 
 def get_params():

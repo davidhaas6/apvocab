@@ -115,7 +115,7 @@ def quizlet_redirect():
     params = quizlet_set.get_params()
     access_token = params[0]
     prev = params[1]
-    session['study_set'] = jsonify(quizlet_set.StudySet(access_token=access_token))
+    session['study_set'] = quizlet_set.StudySet(access_token=access_token)
     return redirect(prev)
 
 
