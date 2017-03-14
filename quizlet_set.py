@@ -1,6 +1,5 @@
 import requests
-from flask import url_for, request, app
-from flask.json import JSONEncoder
+from flask import url_for, request
 
 import views
 
@@ -16,20 +15,6 @@ class StudySet:
 
     def set_title(self, title):
         self.title = title
-
-    class CustomJSONEncoder(JSONEncoder):
-        def default(self, obj):
-            if isinstance(obj, StudySet):
-                info = dict()
-                info['title'] = obj.title
-                info['vocab'] = obj.vocab
-                info['access_token'] = obj.access_token
-                return info
-            else:
-                JSONEncoder.default(self, obj)
-
-    # Now tell Flask to use the custom class
-    app.json_encoder = CustomJSONEncoder
 
 
 def create_set(vocab, title, access_token):
